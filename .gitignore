@@ -1,0 +1,8 @@
+# Ignore directories
+compressed/
+decompressed/
+uploads/
+__pycache__/
+
+# Ignore everything else not explicitly added
+*
