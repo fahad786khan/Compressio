@@ -4,7 +4,7 @@ const fileInput = document.getElementById('fileInput');
         const downloadSection = document.getElementById('downloadSection');
         const downloadLink = document.getElementById('downloadLink');
 
-        const backendUrl = 'https://127.0.0.1:8000'; // Update this if your backend runs on a different URL
+        const backendUrl = 'http://127.0.0.1:8000'; // Update this if your backend runs on a different URL
 
         const uploadFile = async (endpoint) => {
             const file = fileInput.files[0];
