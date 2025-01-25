@@ -4,44 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>File Compression</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            background-color: #f4f4f9;
-        }
-        .container {
-            background: #fff;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            text-align: center;
-            width: 300px;
-        }
-        input[type="file"] {
-            margin-bottom: 20px;
-        }
-        button {
-            background-color: #007BFF;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-        button:hover {
-            background-color: #0056b3;
-        }
-        .download-link {
-            margin-top: 20px;
-            display: none;
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="container">
@@ -56,49 +19,6 @@
         </div>
     </div>
 
-    <script>
-        const fileInput = document.getElementById('fileInput');
-        const compressBtn = document.getElementById('compressBtn');
-        const decompressBtn = document.getElementById('decompressBtn');
-        const downloadSection = document.getElementById('downloadSection');
-        const downloadLink = document.getElementById('downloadLink');
-
-        const backendUrl = 'http://127.0.0.1:8000'; // Update this if your backend runs on a different URL
-
-        const uploadFile = async (endpoint) => {
-            const file = fileInput.files[0];
-            if (!file) {
-                alert('Please select a file first.');
-                return;
-            }
-
-            const formData = new FormData();
-            formData.append('file', file);
-
-            try {
-                const response = await fetch(`${backendUrl}/${endpoint}`, {
-                    method: 'POST',
-                    body: formData,
-                });
-
-                if (!response.ok) {
-                    throw new Error('Failed to process the file.');
-                }
-
-                const data = await response.json();
-                const filePath = data.compressed_file || data.decompressed_file;
-
-                // Show the download link
-                downloadSection.style.display = 'block';
-                downloadLink.href = `${backendUrl}/download/${filePath}`;
-                downloadLink.innerText = filePath.split('/').pop();
-            } catch (error) {
-                alert('An error occurred: ' + error.message);
-            }
-        };
-
-        compressBtn.addEventListener('click', () => uploadFile('compress'));
-        decompressBtn.addEventListener('click', () => uploadFile('decompress'));
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
